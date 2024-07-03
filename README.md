@@ -91,9 +91,9 @@ pip install -r requirements.txt
 
 Model weights are released on [Hugging Face](https://huggingface.co/alexzyqi) and weights will be downloaded automatically when you run the inference script for the first time.
 
-| Model | Pretained Model | Layers | Feat. Dim | Trip. Dim. | In. Res. | Image Encoder |
+| Model | Pretained Model | Layers | Feat. Dim | Trip. Dim. | In. Res. | Image Encoder | 
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| [tailor3d-small-1.0](https://huggingface.co/alexzyqi/tailor3d-small-1.0) | [openlrm-mix-small-1.1](https://huggingface.co/zxhezexin/openlrm-mix-small-1.1)  | 12 | 512 | 32 | 224 | dinov2_vits14_reg |
+| [tailor3d-small-1.0](https://huggingface.co/alexzyqi/tailor3d-small-1.0) | [openlrm-mix-small-1.1](https://huggingface.co/zxhezexin/openlrm-mix-small-1.1)  | 12 | 512 | 32 | 224 | dinov2_vits14_reg | 
 | [tailor3d-base-1.0](https://huggingface.co/alexzyqi/tailor3d-base-1.0) | [openlrm-mix-base-1.1](https://huggingface.co/zxhezexin/openlrm-mix-base-1.1) | 12 | 768 | 48 | 336 | dinov2_vitb14_reg |
 | [tailor3d-large-1.0](https://huggingface.co/alexzyqi/tailor3d-large-1.0)| [openlrm-mix-large-1.1](https://huggingface.co/zxhezexin/openlrm-mix-large-1.1) | 16 | 1024 | 80 | 448 | dinov2_vitb14_reg |
 
@@ -148,15 +148,32 @@ An example training usage of *tatlor3d-large* is as follows:
 - A sample training config file is provided under `TRAIN_CONFIG`, training and inference configs are all in the same config yaml file.
 
 
-### Optional: Inference on Trained Models (From OpenLRM)
+## ➕ Optional: Inference on Your Custom Trained Models (From OpenLRM)
+
+### 1. Convert your trained model to hugging face release format.
 - The inference pipeline is compatible with huggingface utilities for better convenience.
 - You need to convert the training checkpoint to inference models by running the following script.
 
   ```
-  python scripts/convert_hf.py --config <YOUR_EXACT_TRAINING_CONFIG>
+  python scripts/convert_hf.py --config configs/all-large-2sides.yaml
   ```
 
 - The converted model will be saved under `exps/releases` by default and can be used for inference following the inference.
+
+- **Note**: In this way the **model.safetensors** have the full parameters.
+
+| Model | Model Size | Model Size (with pretrained model) | 
+| :--- | :--- | :--- | 
+| [tailor3d-small-1.0](https://huggingface.co/alexzyqi/tailor3d-small-1.0) | 17.4 MB | 436 MB | 
+| [tailor3d-base-1.0](https://huggingface.co/alexzyqi/tailor3d-base-1.0) | 26.8 MB | 1.0 GB | 
+| [tailor3d-large-1.0](https://huggingface.co/alexzyqi/tailor3d-large-1.0)| 45 MB | 1.8 GB | 
+
+### 2. Upload the release format to the hugging face model card.
+
+  ```
+  python scripts/upload_hub.py --model_type lrm --local_ckpt exps/releases/gobjaverse-2sides-large/0428_conv_e10/step_013340 --repo_id alexzyqi/Tailor3D-Large-1.0
+  ```
+Note that you should change `--local_ckpt` and `--repo_id` to your own.
 
 ## 📚 Related Work
 

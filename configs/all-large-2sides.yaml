@@ -110,3 +110,6 @@ inferrer:
     frame_size: 2
     mesh_size: 1024
     mesh_thres: 1
+
+convert:
+    global_step:

@@ -3,7 +3,7 @@ experiment:
     type: lrm
     seed: 42
     parent: gobjaverse-2sides-small
-    child: 0428_conv_e10
+    child: 0428_conv
 
 model:
     camera_embed_dim: 1024
@@ -110,3 +110,6 @@ inferrer:
     frame_size: 2
     mesh_size: 384
     mesh_thres: 3.0
+
+convert:
+    global_step:

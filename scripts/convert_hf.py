@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
+import os
 import argparse
 from omegaconf import OmegaConf
 from megfile import smart_path_join, smart_exists, smart_listdir, smart_makedirs, smart_copy
@@ -20,6 +20,7 @@ from tempfile import TemporaryDirectory
 import torch.nn as nn
 from accelerate import Accelerator
 import safetensors
+from huggingface_hub import hf_hub_download
 
 import sys
 sys.path.append(".")
@@ -53,7 +54,11 @@ def auto_load_model(cfg, model: nn.Module) -> int:
         load_model_path = tmp_model_path
 
     print(f"Loading from {load_model_path}")
-    safetensors.torch.load_model(model, load_model_path)
+    safetensors.torch.load_model(model, load_model_path, strict=False)
+    # load the pretrained model
+    hub_base, hub_file = os.path.split(cfg.saver.load_model['url'])
+    pretrain_model_path = hf_hub_download(repo_id=hub_base, filename=hub_file)
+    safetensors.torch.load_model(model, pretrain_model_path, strict=False)
 
     return int(load_step)
 
@@ -61,7 +66,7 @@ def auto_load_model(cfg, model: nn.Module) -> int:
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config', type=str, default='./assets/config.yaml')
+    parser.add_argument('--config', type=str, default='./configs/all-large-2sides.yaml')
     args, unknown = parser.parse_known_args()
     cfg = OmegaConf.load(args.config)
     cli_cfg = OmegaConf.from_cli(unknown)
