@@ -130,7 +130,7 @@ An example usage of *tatlor3d-large* is as follows:
 ## 🏗️ Training
 
 ### 1. Data Preparation
-We use gobjaverse-lvis dataset. You can get access through the hugging face
+We use gobjaverse-lvis dataset. You can get access through the [hugging face dataset card](https://huggingface.co/datasets/alexzyqi/Tailor3D-Gobjaverse-LVIS).
 
 ### 2. Accelerate Training Configuration
 - `configs/accelerate-train.yaml`: a sample accelerate config file to use 8 GPUs with `bf16` mixed precision.
