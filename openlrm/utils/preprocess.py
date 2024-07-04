@@ -16,7 +16,15 @@
 import numpy as np
 import rembg
 import cv2
+import os
 
+def save_image_with_directory_check(save_path, image):
+    directory = os.path.dirname(save_path)
+
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    
+    return cv2.imwrite(save_path, image)
 
 class Preprocessor:
 
@@ -43,7 +51,7 @@ class Preprocessor:
                 dsize=(size, size),
                 interpolation=cv2.INTER_AREA,
             )
-        return cv2.imwrite(save_path, image)
+        return save_image_with_directory_check(save_path, image)
 
     def step_rembg(self, image_in: np.ndarray) -> np.ndarray:
         image_out = rembg.remove(

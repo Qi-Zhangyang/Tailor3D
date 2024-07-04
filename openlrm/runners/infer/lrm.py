@@ -52,6 +52,8 @@ def parse_configs():
         args.infer = os.environ.get('APP_INFER')
     if os.environ.get('APP_MODEL_NAME') is not None:
         cli_cfg.model_name = os.environ.get('APP_MODEL_NAME')
+    if os.environ.get('APP_PRETRAIN_MODEL_NAME') is not None:
+        cli_cfg.pretrain_model_hf = os.environ.get('APP_PRETRAIN_MODEL_NAME')
 
     if args.config is not None:
         cfg_train = OmegaConf.load(args.config)
@@ -305,7 +307,7 @@ class LRMInferrer(Inferrer):
         os.makedirs(os.path.dirname(dump_mesh_path), exist_ok=True)
         mesh.export(dump_mesh_path)
 
-    def infer_single(self, image_path: str, source_cam_dist: float, export_video: bool, export_mesh: bool, dump_video_path: str, dump_mesh_path: str):
+    def infer_single(self, image_path: str, source_cam_dist: float, export_video: bool, export_mesh: bool, dump_video_path: str, dump_mesh_path: str, image_path_back=None):
         source_size = self.cfg.inferrer.source_size
         render_size = self.cfg.inferrer.render_size
         render_views = self.cfg.inferrer.render_views
@@ -318,8 +320,10 @@ class LRMInferrer(Inferrer):
         image_format = self.cfg.inferrer.image_format
 
         image = self.open_image(image_path, source_size)
-        back_image = self.open_image(image_path.replace('front', 'back'), source_size) if self.cfg.double_sided else None
-
+        if image_path_back is None:
+            back_image = self.open_image(image_path.replace('front', 'back'), source_size) if self.cfg.double_sided else None
+        else:
+            back_image = self.open_image(image_path_back, source_size) if self.cfg.double_sided else None
 
         with torch.no_grad():
             planes = self.infer_planes(image, source_cam_dist=source_cam_dist, back_image=back_image)

@@ -1,0 +1,16 @@
+double_sided: True
+
+model:
+  conv_fuse: True
+
+inferrer:
+  hugging_face: True
+  source_size: 336
+  render_size: 288
+  render_views: 100
+  render_fps: 25
+  frame_size: 2
+  mesh_size: 384
+  mesh_thres: 3.0
+  double_sided: True
+  image_format: False
