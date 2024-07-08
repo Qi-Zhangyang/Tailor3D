@@ -39,11 +39,14 @@
   <a href="http://arxiv.org/abs/xxxx.xxxxx" target='_**blank**'>
     <img src="https://img.shields.io/badge/arXiv-xxxx.xxxxx📖-bron?">
   </a> 
-  <a href="https://runsenxu.com/projects/PointLLM" target='_blank'>
-    <img src="https://img.shields.io/badge/Project%20page-&#x1F680-blue">
+  <a href="https://tailor3d-2024.github.io/" target='_blank'>
+    <img src="https://img.shields.io/badge/Project%20page-&#x1F680-yellow">
   </a>
-  <a href="http://101.230.144.196" target='_blank'>
+  <a href="https://huggingface.co/spaces/alexzyqi/Tailor3D" target='_blank'>
     <img src="https://img.shields.io/badge/Huggingface%20Models-&#x1f917-blue">
+  </a>
+  <a href="https://youtu.be/z9w5CN8mUJQ" target='_blank'>
+    <img src="https://img.shields.io/badge/Youtube%20Video-[▶️]-red">
   </a>
 </p>
 
@@ -52,7 +55,7 @@
 
 ## 🔥 News
 
-- [2024.07.03] We release the [arxiv paper](https://arxiv.org/abs/xxxx.xxxx), [code v1.0](https://arxiv.org/abs/xxxx.xxxx), [project page](https://arxiv.org/abs/xxxx.xxxx) and the [model weight](https://arxiv.org/abs/xxxx.xxxx) of **Tailor3D**. Note that in v1.0, the fusion front and back triplane way is the **conv2d**.
+- [2024.07.03] We release the [arxiv paper](https://arxiv.org/abs/xxxx.xxxx), [code v1.0](https://github.com/Qi-Zhangyang/Tailor3D), [project page](https://tailor3d-2024.github.io/), [model weight](https://huggingface.co/alexzyqi/Tailor3D-Base-1.0) and the [dataset card](https://huggingface.co/datasets/alexzyqi/Tailor3D-Gobjaverse-LVIS) of **Tailor3D**. Note that in v1.0, the fusion front and back triplane way is the **conv2d**.
 
 ## 🏠 Overview (Pipeline and Video)
 
@@ -99,7 +102,7 @@ Model weights are released on [Hugging Face](https://huggingface.co/alexzyqi) an
 
 
 ### 2. Prepare Images
-- We put some sample inputs under `assets/sample_input/gobjaverse_159`. Note that the folders "front" and "back" should respectively contain edited images of the object's frontal view and rear view.
+- We put some sample inputs under `assets/sample_input/demo`. Note that the folders "front" and "back" should respectively contain edited images of the object's frontal view and rear view.
 - Prepare RGBA images or RGB images with white background (with some background removal tools, e.g., [Rembg](https://github.com/danielgatis/rembg), [Clipdrop](https://clipdrop.co)).
 
 ### 3. Inference
@@ -116,7 +119,7 @@ An example usage of *tatlor3d-large* is as follows:
   INFER_CONFIG="./configs/all-large-2sides.yaml"
   MODEL_NAME="alexzyqi/tailor3d-large-1.0"
   PRETRAIN_MODEL_HF="zxhezexin/openlrm-mix-large-1.1"
-  IMAGE_INPUT="./assets/sample_input/gobjaverse_159"
+  IMAGE_INPUT="./assets/sample_input/demo"
 
   python -m openlrm.launch infer.lrm --infer $INFER_CONFIG model_name=$MODEL_NAME pretrain_model_hf=$PRETRAIN_MODEL_HF image_input=$IMAGE_INPUT export_video=$EXPORT_VIDEO export_mesh=$EXPORT_MESH double_sided=$DOUBLE_SIDED inferrer.hugging_face=$HUGGING_FACE
   ```
