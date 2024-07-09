@@ -36,8 +36,8 @@
 </div>
 
 <p align="center">
-  <a href="http://arxiv.org/abs/xxxx.xxxxx" target='_**blank**'>
-    <img src="https://img.shields.io/badge/arXiv-xxxx.xxxxx📖-bron?">
+  <a href="http://arxiv.org/abs/2407.06191" target='_**blank**'>
+    <img src="https://img.shields.io/badge/arXiv-2407.06191📖-bron?">
   </a> 
   <a href="https://tailor3d-2024.github.io/" target='_blank'>
     <img src="https://img.shields.io/badge/Project%20page-&#x1F680-yellow">
@@ -55,7 +55,7 @@
 
 ## 🔥 News
 
-- [2024.07.03] We release the [arxiv paper](https://arxiv.org/abs/xxxx.xxxx), [code v1.0](https://github.com/Qi-Zhangyang/Tailor3D), [project page](https://tailor3d-2024.github.io/), [model weight](https://huggingface.co/alexzyqi/Tailor3D-Base-1.0) and the [dataset card](https://huggingface.co/datasets/alexzyqi/Tailor3D-Gobjaverse-LVIS) of **Tailor3D**. Note that in v1.0, the fusion front and back triplane way is the **conv2d**.
+- [2024.07.03] We release the [arxiv paper](https://arxiv.org/abs/2407.06191), [code v1.0](https://github.com/Qi-Zhangyang/Tailor3D), [project page](https://tailor3d-2024.github.io/), [model weight](https://huggingface.co/alexzyqi/Tailor3D-Base-1.0) and the [dataset card](https://huggingface.co/datasets/alexzyqi/Tailor3D-Gobjaverse-LVIS) of **Tailor3D**. Note that in v1.0, the fusion front and back triplane way is the **conv2d**.
 
 ## 🏠 Overview (Pipeline and Video)
 
@@ -204,11 +204,14 @@ Note that you should change `--local_ckpt` and `--repo_id` to your own.
 
 If you find this work useful for your research, please consider citing:
 ```
-@article{Tailor3D,
-    author = {Zhangyang Qi, Yunhan Yang, Mengchen Zhang, Long Xing, Xiaoyang Wu, Tong Wu, Dahua Lin, Xihui Liu, Jiaqi Wang, Hengshuang Zhao },
-    title = {Tailor3D: Customized 3D Assets Editing and Generation with Dual-Side Images},
-    journal= {arxiv:2024},
-    year={2024}
+@misc{qi2024tailor3dcustomized3dassets,
+      title={Tailor3D: Customized 3D Assets Editing and Generation with Dual-Side Images}, 
+      author={Zhangyang Qi and Yunhan Yang and Mengchen Zhang and Long Xing and Xiaoyang Wu and Tong Wu and Dahua Lin and Xihui Liu and Jiaqi Wang and Hengshuang Zhao},
+      year={2024},
+      eprint={2407.06191},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2407.06191}, 
 }
 
 ```
